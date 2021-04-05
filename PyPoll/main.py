@@ -36,7 +36,7 @@ with open(election_data_path) as election_csv:
     county = []
     candidate = []
     
-
+    # Store raw data into python arrays/lists in order to complete arithmetic analysis
     for row in election_data_reader:
         #print(row)
         election_data.append(row)
@@ -44,3 +44,59 @@ with open(election_data_path) as election_csv:
         county.append(row[1])
         candidate.append(row[2])
 
+print(voterID[0])
+print(county[0])
+print(candidate[0])
+
+# Getting the length of the voterID list to tabulate the total number of votes
+total_votes = len(voterID)
+
+#Looping through candidate data to identify each unique candidate and their assoicated number 
+# of votes
+# Ref: https://www.geeksforgeeks.org/python-get-unique-values-list/
+
+unique_candidate = []
+candidate0_voterIDs = [] #Khan
+candidate1_voterIDs = [] #Correy
+candidate2_voterIDs = [] #Li
+candidate3_voterIDs = [] #O'Tooley
+
+for name in candidate: 
+
+    if name not in unique_candidate: 
+        unique_candidate.append(name)
+
+
+print(unique_candidate)
+
+for name in candidate: 
+
+    index = candidate.index(name)
+
+    if name == unique_candidate[0]: 
+        candidate0_voterIDs.append(voterID[index])
+    
+    elif name == unique_candidate[1]:
+        candidate1_voterIDs.append(voterID[index])
+
+    elif name == unique_candidate[2]:
+        candidate2_voterIDs.append(voterID[index])
+
+    else: 
+        candidate3_voterIDs.append(voterID[index])
+
+
+       
+khan_votes = len(candidate0_voterIDs)
+correy_votes = len(candidate1_voterIDs)
+li_votes = len(candidate2_voterIDs)
+tooley_votes = len(candidate3_voterIDs)
+
+print("Total Votes: ", total_votes)
+print("Khan Votes: ", khan_votes)
+print("Correy Votes: ", correy_votes)
+print("Li Votes: ", li_votes)
+print("O'Tooley Votes: ", tooley_votes)
+
+
+        
