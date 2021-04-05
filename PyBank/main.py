@@ -124,8 +124,8 @@ with open(output_path, "w", newline='') as analysis_file:
     analysis_file.write("Total Months: " + total_months_str + "\n")
     analysis_file.write("Net Total Profit/Losses: " + nettotal_profit_str + "\n")
     analysis_file.write("Average Change in Profit/Losses: " + average_profitlosses_str + "\n")
-    analysis_file.write("Greatest Increase: " + max_date_str + " " + greatest_increase_str + "\n")
-    analysis_file.write("Greatest Decrease: " + min_date_str + " " + greatest_decrease_str + "\n")
+    analysis_file.write("Greatest Increase: " + max_date_str + " " + "(" + greatest_increase_str + ")" + "\n")
+    analysis_file.write("Greatest Decrease: " + min_date_str + " " + "(" + greatest_decrease_str + ")" + "\n")
 
 
 

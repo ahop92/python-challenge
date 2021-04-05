@@ -44,9 +44,9 @@ with open(election_data_path) as election_csv:
         county.append(row[1])
         candidate.append(row[2])
 
-print(voterID[0])
-print(county[0])
-print(candidate[0])
+#print(voterID[0])
+#print(county[0])
+#print(candidate[0])
 
 # Getting the length of the voterID list to tabulate the total number of votes
 total_votes = len(voterID)
@@ -67,7 +67,7 @@ for name in candidate:
         unique_candidate.append(name)
 
 
-print(unique_candidate)
+#print(unique_candidate)
 
 for name in candidate: 
 
@@ -92,11 +92,56 @@ correy_votes = len(candidate1_voterIDs)
 li_votes = len(candidate2_voterIDs)
 tooley_votes = len(candidate3_voterIDs)
 
+vote_values = [khan_votes, correy_votes, li_votes, tooley_votes]
+winner_value = max(vote_values)
+winner_name = ""
+
+if winner_value == vote_values[0]:
+    winner_name = "Khan"
+
+elif winner_value == vote_values[1]:
+    winner_name = "Correy"
+
+elif winner_value == vote_values[2]:
+    winner_name = "Li"
+else: 
+    winner_name = "O'Tooley"
+
+
+# Formatting the voting values as a percentage 
+khan_percentage = "{:.3%}".format((khan_votes/total_votes))
+correy_percentage = "{:.3%}".format((correy_votes/total_votes))
+li_percentage = "{:.3%}".format((li_votes/total_votes))
+tooley_percentage = "{:.3%}".format((tooley_votes/total_votes))
+
+print("Election Results")
+print("------------------")
 print("Total Votes: ", total_votes)
-print("Khan Votes: ", khan_votes)
-print("Correy Votes: ", correy_votes)
-print("Li Votes: ", li_votes)
-print("O'Tooley Votes: ", tooley_votes)
+print("------------------")
+print(f'Khan: {khan_percentage} ({khan_votes})')
+print(f'Correy: {correy_percentage} ({correy_votes})')
+print(f'Li: {li_percentage} ({li_votes})')
+print(f'O\'Tooley: {tooley_percentage} ({tooley_votes})')
+print("------------------")
+print(f'Winner: {winner_name} ')
+print("------------------")
 
+# Writing results to a textfile that is stored in the specified analysis folder 
+ # Ref: https://stackoverflow.com/questions/5214578/print-string-to-text-file
+ # Ref: https://stackoverflow.com/questions/2918362/writing-string-to-a-file-on-a-new-line-every-time
+   
+output_path = os.path.join(script_location, 'Analysis', 'PyPollOutput.txt')
 
-        
+with open(output_path, "w", newline='') as analysis_file:
+
+    analysis_file.write("Election Results\n")
+    analysis_file.write("------------------\n")
+    analysis_file.write(f'Total Votes: {total_votes} \n')
+    analysis_file.write("------------------\n")
+    analysis_file.write(f'Khan: {khan_percentage} ({khan_votes})\n')
+    analysis_file.write(f'Correy: {correy_percentage} ({correy_votes})\n')
+    analysis_file.write(f'Li: {li_percentage} ({li_votes})\n')    
+    analysis_file.write(f'O\'Tooley: {tooley_percentage} ({tooley_votes})\n')    
+    analysis_file.write("------------------\n")
+    analysis_file.write(f'Winner: {winner_name}\n')
+    analysis_file.write("------------------\n")
